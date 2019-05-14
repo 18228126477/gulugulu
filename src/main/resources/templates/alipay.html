@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/common :: common_resource"></div>
+    <title>商品页</title>
+</head>
+<body>
+<div id="form" class="container" style="text-align: center">
+    <div class="input-group">
+        <span class="input-group-addon">订单金额:</span>
+        <input type="text" class="form-control" v-model="amount" />
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">订单名称:</span>
+        <input type="text" class="form-control" v-model="orderName" />
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">订单编码:</span>
+        <input type="text"  class="form-control" v-model="orderId" />
+    </div>
+    <button type="button" class="btn btn-default" @click="post()">提交订单</button>
+</div>
+</body>
+<script>
+    window.onload = function(){
+        var alipay = new Vue({
+            el:'#form',
+            data:{
+                amount:'',
+                orderName:'',
+                orderId:''
+            },
+            methods:{
+                post:function(){
+                    //发送 post 请求
+                    var data ={amount:this.amount,orderName:this.orderName,orderId:this.orderId};
+                    this.$http.post('/alipay/pay', data, {emulateJSON:true}).then(function(res){
+                        var div = document.createElement('div');
+                        div.innerHTML = res.bodyText;
+                        document.body.appendChild(div);
+                        document.forms[0].submit();
+                    },function(res){
+                        console.log(res.status);
+                    });
+                }
+            }
+        });
+    }
+</script>
+</html>

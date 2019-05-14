@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmr.demo.dao.CharacterMapper">
+    <resultMap id="BaseResultMap" type="com.xmr.demo.domain.Character">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="sex" property="sex" />
+        <result column="photo_url" property="photoUrl" />
+        <result column="introduce" property="introduce" />
+        <result column="simple_introduce" property="simpleIntroduce" />
+        <result column="statics" property="statics" />
+        <result column="creater" property="creater" />
+        <result column="create_date" property="createDate" />
+    </resultMap>
+
+    <parameterMap id="Character" type="com.xmr.demo.domain.Character"/>
+
+    <sql id="Base_Column_List">
+        id, name, sex, photo_url, introduce, simple_introduce, statics, creater, create_date
+    </sql>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from dome_character
+        where id = #{id}
+    </select>
+
+    <insert id="saveCharacter" parameterMap="Character" useGeneratedKeys="true" keyProperty="id">
+        insert into dome_character(id,name,sex,photo_url,introduce,simple_introduce,statics,creater,create_date)
+        values (#{id},#{name},#{sex},#{photoUrl},#{introduce},#{simpleIntroduce},#{statics},#{creater},#{createDate})
+    </insert>
+
+    <delete id="deleteCharacter" parameterType="java.lang.Integer">
+        delete from dome_character where id = #{id}
+    </delete>
+</mapper>
