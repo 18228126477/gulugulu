@@ -156,8 +156,25 @@
             </div>
         </div>
     </div>
+<div id="box">
+    <button type="button" class="btn btn-default" @click="get()">提交订单</button>
+</div>
 </body>
 <script>
-
+    window.onload = function(){
+        new Vue({
+            el:'#box',
+            methods:{
+                get:function(){
+                    //发送get请求
+                    this.$http.get('/indexData/index').then(function(res){
+                        this.=res.body;
+                    },function(){
+                        console.log('请求失败处理');
+                    });
+                }
+            }
+        });
+    }
 </script>
 </html>
