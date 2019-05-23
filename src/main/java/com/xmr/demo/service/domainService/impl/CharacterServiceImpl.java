@@ -6,12 +6,19 @@ import com.xmr.demo.service.domainService.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
 
     @Autowired
     private CharacterMapper characterMapper;
+
+    @Override
+    public List<Character> findAll() {
+        return characterMapper.findAll();
+    }
 
     @Override
     public Character findById(Integer id) {

@@ -19,6 +19,12 @@
         id, name, sex, photo_url, introduce, simple_introduce, statics, creater, create_date
     </sql>
 
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from dome_character
+    </select>
+
     <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List" />
