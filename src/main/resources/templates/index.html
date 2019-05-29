@@ -65,89 +65,12 @@
     <div id="box" class="bottom-box">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3" v-for="film in films">
                     <div class="card">
-                        <img src="/static/images/thumbnail1.jpg" class="card-img-top" alt="...">
+                        <img :src="film.photoUrl" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">野兽</h5>
-                            <p class="card-text">智慧超群、超强力量、尖牙利爪</p>
-                            <a href="#" class="btn btn-primary">查看详情</a>
-                            <a href="#" class="btn btn-light">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="/static/images/thumbnail2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">快银</h5>
-                            <p class="card-text">超音速奔跑</p>
-                            <a href="#" class="btn btn-primary">查看详情</a>
-                            <a href="#" class="btn btn-light">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="/static/images/thumbnail3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">X教授</h5>
-                            <p class="card-text">心灵感应、天才智慧、幻术施展</p>
-                            <a href="#" class="btn btn-primary">查看详情</a>
-                            <a href="#" class="btn btn-light">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="/static/images/thumbnail4.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">特拉斯克</h5>
-                            <p class="card-text">有远望的科学家</p>
-                            <a href="#" class="btn btn-primary">查看详情</a>
-                            <a href="#" class="btn btn-light">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="/static/images/thumbnail5.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">金刚狼</h5>
-                            <p class="card-text">强大的自愈能力</p>
-                            <a href="#" class="btn btn-primary">查看详情</a>
-                            <a href="#" class="btn btn-light">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="/static/images/thumbnail6.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">法官</h5>
-                            <p class="card-text">吸收宇宙能量、能量释放</p>
-                            <a href="#" class="btn btn-primary">查看详情</a>
-                            <a href="#" class="btn btn-light">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="/static/images/thumbnail7.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">魔形女</h5>
-                            <p class="card-text">可以变成别人的样子</p>
-                            <a href="#" class="btn btn-primary">查看详情</a>
-                            <a href="#" class="btn btn-light">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="/static/images/thumbnail8.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">暴风女</h5>
-                            <p class="card-text">控制天气、飞行、能量感知</p>
+                            <h5 class="card-title" v-text="film.name"></h5>
+                            <p class="card-text" v-text="film.simpleIntroduce"></p>
                             <a href="#" class="btn btn-primary">查看详情</a>
                             <a href="#" class="btn btn-light">了解更多</a>
                         </div>
@@ -161,8 +84,15 @@
     new Vue({
         el:"#box",
         data:{
-
+            films:[]
         },
+        created : function () {
+            this.$http.post('/indexData/index', {emulateJSON:true}).then(function(res){
+                this.films=res.data;
+            },function(res){
+                console.log(res.status);
+            });
+        }
     })
 </script>
 </html>
