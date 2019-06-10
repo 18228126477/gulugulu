@@ -1,5 +1,8 @@
 package com.xmr.demo.common.redis;
 
+import com.xmr.demo.common.filter.ControllerFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +18,7 @@ public class RedisConfig {
      */
     @Autowired
     RedisConnectionFactory redisConnectionFactory;
-
+    private static final Logger logger = LoggerFactory.getLogger(ControllerFilter.class);
     /**
      * 实例化 RedisTemplate 对象
      *
@@ -25,6 +28,7 @@ public class RedisConfig {
     public RedisTemplate<String, Object> functionDomainRedisTemplate() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         initDomainRedisTemplate(redisTemplate, redisConnectionFactory);
+        logger.info("redis启动成功");
         return redisTemplate;
     }
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.reflect.Method;
 
-public class RealizationTest implements AnnotationInterface {
+public class Realization implements AnnotationInterface {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomAnnotationScan.class);
 

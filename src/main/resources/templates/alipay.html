@@ -43,7 +43,7 @@
             submission:function(){
                 //发送 post 请求
                 var data ={amount:this.amount,orderName:this.orderName,orderId:this.orderId};
-                this.$http.post('/alipay/pay', data, {emulateJSON:true}).then(function(res){
+                this.$http.post('../alipay/pay', data, {emulateJSON:true}).then(function(res){
                     var div = document.createElement('div');
                     div.innerHTML = res.bodyText;
                     document.body.appendChild(div);
