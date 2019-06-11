@@ -24,4 +24,7 @@ public class Index {
     public String webSocketTest(){
         return "webSocketTest";
     }
+
+    @RequestMapping("login")
+    public String login(){ return "login"; }
 }

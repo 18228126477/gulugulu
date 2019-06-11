@@ -4,7 +4,10 @@ package com.xmr.demo.untils.redis;
 import com.xmr.demo.untils.redis.impl.RedisUntil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class RedisUntilImpl implements RedisUntil {
 
     @Autowired
