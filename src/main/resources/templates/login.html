@@ -37,14 +37,11 @@
             submission:function(){
                 //发送 post 请求
                 var data ={userName:this.userName,password:this.password};
-                this.$http.post('../indexData/login', data, {emulateJSON:true}).then(function(res){
+                this.$http.post('../set', data, {emulateJSON:true}).then(function(res){
                     console.log(res);
                 },function(res){
                     console.log(res.status);
                 });
-            },
-            add:function(){
-                amount=this.amount++;
             }
         }
     });

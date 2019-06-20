@@ -25,8 +25,8 @@ public class ControllerFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String requestURI = request.getRequestURI();
-        if(!"/static".equals(requestURI.substring(0,7)))
-            logger.info(requestURI);
+        /*if(!"/static".equals(requestURI.substring(0,7)))
+            logger.info(requestURI);*/
         filterChain.doFilter(request, response);
     }
 
