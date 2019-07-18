@@ -84,4 +84,19 @@ public class Character {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", introduce='" + introduce + '\'' +
+                ", simpleIntroduce='" + simpleIntroduce + '\'' +
+                ", statics=" + statics +
+                ", creater='" + creater + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
