@@ -31,7 +31,7 @@ public class ClassicalAlgorithm {
     }
 
     /**
-     * 斐波那契数列 矩阵计算法 o(log(n))
+     * 斐波那契数列 矩阵计算法 o(lg(n))
      * **/
     static int fibonacciSequenceForMatrix(int n){
         int a1[][] = new int[2][2];
