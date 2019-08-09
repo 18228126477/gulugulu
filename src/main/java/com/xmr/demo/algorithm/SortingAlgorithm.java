@@ -5,7 +5,7 @@ public class SortingAlgorithm {
     /**
      * 冒泡排序
      * **/
-    public static void bubbleSort(int[] arr){
+    private static void bubbleSort(int[] arr){
         for(int i=arr.length-1;i>0;i--){
             for(int j=0;j<i;j++){
                 if(arr[j]>arr[j+1]){
@@ -20,7 +20,7 @@ public class SortingAlgorithm {
     /**
      * 插入排序
      * **/
-    public static void insertSort(int[] arr){
+    private static void insertSort(int[] arr){
         for(int i=1;i<arr.length;i++){
             int tmp=arr[i];
             int j;
@@ -38,7 +38,7 @@ public class SortingAlgorithm {
     /**
      * 归并排序
      * **/
-    public static void mergeSort(int[] arr){
+    private static void mergeSort(int[] arr){
         int length =arr.length/2;
         int[] a = new int[length];
         int[] b = new int[arr.length-length];
@@ -70,7 +70,7 @@ public class SortingAlgorithm {
     /**
      * 快速排序
      * **/
-    public static void quickSort(int[] arr,int p,int q){
+    private static void quickSort(int[] arr,int p,int q){
         if(p<q){
             int a = partition(arr,p,q);
             quickSort(arr,p,a-1);
@@ -78,8 +78,8 @@ public class SortingAlgorithm {
         }
     }
 
-    public static int partition(int[] arr,int p,int q){
-        int i =p;
+    private static int partition(int[] arr,int p,int q){
+        /*int i =p;
         int j =q+1;
         int v = arr[p];
         while(true){
@@ -91,34 +91,43 @@ public class SortingAlgorithm {
             swap(arr,i,j);
         }
         swap(arr,p,j);
-        return j;
+        return j;*/
+        int i=p;
+        int v=arr[p];
+        for(int j=p+1;j<=q;j++){
+            if(v>=arr[j]){
+                swap(arr,++i,j);
+            }
+        }
+        swap(arr,p,i);
+        return i;
     }
 
-    public static void swap(int[] arr,int p,int q){
+    private static void swap(int[] arr,int p,int q){
         int x = arr[p];
         arr[p]=arr[q];
         arr[q]=x;
     }
 
-    public static void main(String[] args){
-        int[] arr = {20,3,4,2,9,6,7,8,5,10,14,12,13,16,17,1,19,18,30,32,29,35,37,38,40,39,54,53,52,51,56,58,57,59};
+    public static void main(String[] args) {
+        int[] arr = {6, 10, 13, 5, 8, 3, 2, 11};
         long startTime=System.nanoTime();
         mergeSort(arr);
         long endTime=System.nanoTime();
         System.out.println("归并排序运行时间： "+(endTime-startTime)+"ms");
-        int[] arr1 = {1,3,4,2,9,6,7,8,5,10,14,12,13,16,17,20,19,18,30,32,29,35,37,38,40,39,54,53,52,51,56,58,57,59};
+        int[] arr1 = {6,10,13,5,8,3,2,11};
         startTime=System.nanoTime();
         insertSort(arr1);
         endTime=System.nanoTime();
         System.out.println("插入排序运行时间： "+(endTime-startTime)+"ms");
-        int[] arr2 = {1,3,4,2,9,6,7,8,5,10,14,12,13,16,17,20,19,18,30,32,29,35,37,38,40,39,54,53,52,51,56,58,57,59};
+        int[] arr2 = {6,10,13,5,8,3,2,11};
         startTime=System.nanoTime();
         bubbleSort(arr2);
         endTime=System.nanoTime();
         System.out.println("冒泡排序运行时间： "+(endTime-startTime)+"ms");
-        int[] arr3 = {1,3,4,2,9,6,7,8,5,10,14,12,13,16,17,20,19,18,30,32,29,35,37,38,40,39,54,53,52,51,56,58,57,59};
+        int[] arr3 = {6,10,13,5,8,3,2,11};
         startTime=System.nanoTime();
-        quickSort(arr3,0,33);
+        quickSort(arr3,0,arr3.length-1);
         endTime=System.nanoTime();
         System.out.println("快速排序运行时间： "+(endTime-startTime)+"ms");
     }
