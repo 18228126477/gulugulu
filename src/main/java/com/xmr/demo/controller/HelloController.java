@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-public class HelloController {
+public class HelloController extends BaseController{
 
     @Value("${server.port}")
     Integer port;

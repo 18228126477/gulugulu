@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @ServerEndpoint("/webSocket/{type}/{code}")
 @Component
-public class WebSocketOrder {
+public class WebSocketOrder extends BaseController{
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketOrder.class);
 

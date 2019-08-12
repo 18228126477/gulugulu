@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("indexData")
 @ResponseBody
-public class IndexBody {
+public class IndexBody extends BaseController{
 
     @Autowired
     private CharacterService characterService;

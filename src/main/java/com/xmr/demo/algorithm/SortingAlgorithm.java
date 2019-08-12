@@ -1,5 +1,7 @@
 package com.xmr.demo.algorithm;
 
+import java.util.Random;
+
 public class SortingAlgorithm {
 
     /**
@@ -78,6 +80,15 @@ public class SortingAlgorithm {
         }
     }
 
+    /**
+     * 随机快速排序
+     * **/
+    private  static  void quickSortRandom(int[] arr,int p,int q){
+        int rand = (int)(Math.random()*(q-p)+p);
+        swap(arr,p,rand);
+        quickSort(arr,p,q);
+    }
+
     private static int partition(int[] arr,int p,int q){
         /*int i =p;
         int j =q+1;
@@ -130,5 +141,17 @@ public class SortingAlgorithm {
         quickSort(arr3,0,arr3.length-1);
         endTime=System.nanoTime();
         System.out.println("快速排序运行时间： "+(endTime-startTime)+"ms");
+        int[] arr4 = {6,10,13,5,8,3,2,11};
+        startTime=System.nanoTime();
+        quickSortRandom(arr4,0,arr4.length-1);
+        endTime=System.nanoTime();
+        System.out.println("随机快速排序运行时间： "+(endTime-startTime)+"ms");
+        //print(arr4);
+    }
+
+    private static void print(int[] arr){
+        for(int i:arr){
+            System.out.println(arr[i]);
+        }
     }
 }

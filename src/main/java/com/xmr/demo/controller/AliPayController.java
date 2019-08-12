@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("alipay")
-public class AliPayController {
+public class AliPayController extends BaseController{
     @Resource
     private AliPayService alipayService;
 
