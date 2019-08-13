@@ -1,6 +1,5 @@
 package com.xmr.demo.algorithm;
 
-import java.util.Random;
 
 public class SortingAlgorithm {
 
