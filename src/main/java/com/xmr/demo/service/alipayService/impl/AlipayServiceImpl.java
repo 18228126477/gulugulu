@@ -6,6 +6,7 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.xmr.demo.param.AlipayOrderParam;
 import com.xmr.demo.param.AlipayParam;
+import com.xmr.demo.service.BaseService;
 import com.xmr.demo.service.alipayService.AliPayService;
 import com.xmr.demo.untils.CustomAnnotationScan;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Service
-public class AlipayServiceImpl implements AliPayService {
+public class AlipayServiceImpl extends BaseService implements AliPayService  {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomAnnotationScan.class);
 

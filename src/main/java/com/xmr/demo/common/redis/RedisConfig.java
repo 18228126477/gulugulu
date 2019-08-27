@@ -1,9 +1,10 @@
 package com.xmr.demo.common.redis;
 
-import com.xmr.demo.common.filter.ControllerFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -12,13 +13,14 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
+@AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
     /**
      * 注入 RedisConnectionFactory
      */
     @Autowired
     RedisConnectionFactory redisConnectionFactory;
-    private static final Logger logger = LoggerFactory.getLogger(ControllerFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(RedisConfig.class);
     /**
      * 实例化 RedisTemplate 对象
      *
