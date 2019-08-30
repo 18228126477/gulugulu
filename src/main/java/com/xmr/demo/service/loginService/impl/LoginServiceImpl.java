@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -16,6 +18,7 @@ public class LoginServiceImpl extends BaseService implements LoginService {
 
     @Override
     public void login(HttpServletResponse response, User user) {
+        Map<Object,Integer> map = new HashMap<>();
         String token = UUID.randomUUID().toString().replace("-","");
         redisUntil.set(token,user.getUserName(),1800L);
         Cookie cookie = new Cookie("domeLogin",user.getUserName());
