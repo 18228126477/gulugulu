@@ -12,7 +12,7 @@ public class TrieFilter {
         this.head = new Node(' ');
     }
 
-    public void insert(String word){
+    private void insert(String word){
         if(word.equals(search(word))) return;
         Node node = head;
         for(int i = 0; i<word.length(); i++){
@@ -44,7 +44,7 @@ public class TrieFilter {
         else return "";
     }
 
-    public String searchFilter(String article){
+    private String searchFilter(String article){
         String str = "";
         String articleBackups = article;
         for(int i = 0; i<article.length(); i++){

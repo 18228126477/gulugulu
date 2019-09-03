@@ -53,8 +53,8 @@ public class ClassicalAlgorithm {
         double y;
         int j = 0;
         for(int i=0;i<n;i++){
-            x = Math.random()-1.0;
-            y = Math.random()-1.0;
+            x = Math.random();
+            y = Math.random();
             if((x*x+y*y)<1.0)
                 j++;
         }
