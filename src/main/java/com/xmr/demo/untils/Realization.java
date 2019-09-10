@@ -3,7 +3,7 @@ package com.xmr.demo.untils;
 import com.xmr.demo.common.AbnormalEnum;
 import com.xmr.demo.common.annotation.MethodSign;
 import com.xmr.demo.untils.impl.AnnotationInterface;
-import com.xmr.demo.untils.redis.RedisUntilImpl;
+import com.xmr.demo.untils.redis.impl.RedisUntilImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;

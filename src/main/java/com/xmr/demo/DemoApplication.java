@@ -8,8 +8,8 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-@ServletComponentScan
 @MapperScan("com.xmr.demo.dao")
+@ServletComponentScan
 public class DemoApplication extends SpringBootServletInitializer {
 
     @Override

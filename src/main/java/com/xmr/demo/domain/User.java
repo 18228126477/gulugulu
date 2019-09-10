@@ -2,19 +2,28 @@ package com.xmr.demo.domain;
 
 public class User {
 
-    private String userName;
+    private Integer id;
+    private String username;
     private String password;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

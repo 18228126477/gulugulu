@@ -9,14 +9,14 @@
         <result column="introduce" property="introduce" />
         <result column="simple_introduce" property="simpleIntroduce" />
         <result column="statics" property="statics" />
-        <result column="creater" property="creater" />
+        <result column="creator" property="creator" />
         <result column="create_date" property="createDate" />
     </resultMap>
 
     <parameterMap id="Character" type="com.xmr.demo.domain.Character"/>
 
     <sql id="Base_Column_List">
-        id, name, sex, photo_url, introduce, simple_introduce, statics, creater, create_date
+        id, name, sex, photo_url, introduce, simple_introduce, statics, creator, create_date
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
@@ -33,8 +33,8 @@
     </select>
 
     <insert id="saveCharacter" parameterMap="Character" useGeneratedKeys="true" keyProperty="id">
-        insert into dome_character(id,name,sex,photo_url,introduce,simple_introduce,statics,creater,create_date)
-        values (#{id},#{name},#{sex},#{photoUrl},#{introduce},#{simpleIntroduce},#{statics},#{creater},#{createDate})
+        insert into dome_character(id,name,sex,photo_url,introduce,simple_introduce,statics,creator,create_date)
+        values (#{id},#{name},#{sex},#{photoUrl},#{introduce},#{simpleIntroduce},#{statics},#{creator},#{createDate})
     </insert>
 
     <delete id="deleteCharacter" parameterType="java.lang.Integer">

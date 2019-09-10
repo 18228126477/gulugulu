@@ -10,7 +10,7 @@ public class Character {
     private String introduce;
     private String simpleIntroduce;
     private Integer statics;
-    private String creater;
+    private String creator;
     private Date createDate;
 
     public Integer getId() {
@@ -41,8 +41,8 @@ public class Character {
         return statics;
     }
 
-    public String getCreater() {
-        return creater;
+    public String getCreator() {
+        return creator;
     }
 
     public Date getCreateDate() {
@@ -77,8 +77,8 @@ public class Character {
         this.statics = statics;
     }
 
-    public void setCreater(String creater) {
-        this.creater = creater;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public void setCreateDate(Date createDate) {
@@ -95,7 +95,7 @@ public class Character {
                 ", introduce='" + introduce + '\'' +
                 ", simpleIntroduce='" + simpleIntroduce + '\'' +
                 ", statics=" + statics +
-                ", creater='" + creater + '\'' +
+                ", creator='" + creator + '\'' +
                 ", createDate=" + createDate +
                 '}';
     }
