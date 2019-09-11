@@ -1,8 +1,6 @@
 package com.xmr.demo.controller;
 
-import com.xmr.demo.domain.Character;
 import com.xmr.demo.domain.User;
-import com.xmr.demo.service.domainService.CharacterService;
 import com.xmr.demo.service.loginService.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,20 +9,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @Controller
-@RequestMapping("indexData")
-@ResponseBody
-public class IndexData extends BaseController{
+@RequestMapping("login")
+public class LoginController {
 
     @Autowired
-    private CharacterService characterService;
+    private LoginService loginService;
 
     @RequestMapping("index")
-    public List<Character> index(){
-        return characterService.findAll();
+    public String login(){ return "login"; }
+
+    @RequestMapping("login")
+    @ResponseBody
+    public String login(HttpServletRequest request, HttpServletResponse response, User user){
+        return loginService.login(request,response, user);
     }
-
-
 }

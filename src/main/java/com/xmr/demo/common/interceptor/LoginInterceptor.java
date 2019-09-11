@@ -13,14 +13,10 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        String urlString = request.getRequestURI();
         if(session.getAttribute("user") != null){
             return true;
         }
-        if(urlString.contains("/view/login.html")){
-            return true;
-        }
-        response.sendRedirect("/index/login");
+        response.sendRedirect("/login/index");
         return false;
     }
 

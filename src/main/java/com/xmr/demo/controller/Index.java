@@ -9,7 +9,6 @@ public class Index extends BaseController{
 
     @RequestMapping("index")
     public String index(User user){
-        System.out.println(user.getUserName());
         return "index";
     }
 
@@ -28,6 +27,5 @@ public class Index extends BaseController{
         return "webSocketTest";
     }
 
-    @RequestMapping("login")
-    public String login(){ return "login"; }
+
 }

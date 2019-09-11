@@ -105,7 +105,7 @@
         methods:{
             submission:function () {
                 let data ={username:this.username,password:this.password};
-                this.$http.post('../indexData/login', data, {emulateJSON:true}).then(function(res) {
+                this.$http.post('../login/login', data, {emulateJSON:true}).then(function(res) {
                     if(res.data.sign==="success"){
                         location.href="/index/index";
                     }else{
