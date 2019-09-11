@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Service
@@ -18,11 +19,12 @@ public class LoginServiceImpl extends BaseService implements LoginService {
     private UserMapper userMapper;
 
     @Override
-    public String login(HttpServletResponse response, User user) {
+    public String login(HttpServletRequest request, HttpServletResponse response, User user) {
         User userData = userMapper.findByUserName(user.getUserName());
         if(!isEmpty(userData)){
             if(userData.getPassword().equals(user.getPassword())){
                 String data = userData.getId()+"";
+                request.getSession().setAttribute("user",userData);
                 String token = base64Encode(data);
                 redisUntil.set(token,JSONObject.toJSONString(userData),1800);
                 Cookie cookie = new Cookie("loginToken",token);

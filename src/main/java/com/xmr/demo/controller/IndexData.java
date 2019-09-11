@@ -30,7 +30,7 @@ public class IndexData extends BaseController{
     }
 
     @RequestMapping("login")
-    public String login(HttpServletResponse response,User user){
-        return loginService.login(response, user);
+    public String login(HttpServletRequest request,HttpServletResponse response,User user){
+        return loginService.login(request,response, user);
     }
 }
