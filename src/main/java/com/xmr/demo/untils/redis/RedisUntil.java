@@ -7,4 +7,6 @@ public interface RedisUntil {
     void set(String key, Object value);
     void set(String key, Object value, long offset);
     void delete(String key);
+    String setLogin(String key, Object value, long offset);
+    String getLogin(String key);
 }

@@ -30,10 +30,13 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(session.getAttribute("user") != null){
             return true;
         }else if(cookie != null){
-            Integer id = (Integer) redisUntil.get(cookie.getValue());
-            User user = userMapper.findById(id);
-            session.setAttribute("user",user);
-            return true;
+            String loginData = redisUntil.getLogin(cookie.getValue());
+            if(loginData!=null){
+                Integer id = Integer.valueOf(loginData);
+                User user = userMapper.findById(id);
+                session.setAttribute("user",user);
+                return true;
+            }
         }
         response.sendRedirect(request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/login/index");
         return false;

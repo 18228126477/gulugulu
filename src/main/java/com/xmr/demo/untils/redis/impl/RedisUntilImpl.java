@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Base64;
+import java.util.Objects;
+
 
 @Component
 public class RedisUntilImpl implements RedisUntil {
@@ -71,5 +74,30 @@ public class RedisUntilImpl implements RedisUntil {
         if (key != null && redisTemplate.hasKey(key)) {
             redisTemplate.delete(key);
         }
+    }
+
+    @Override
+    public String setLogin(String key, Object value, long offset) {
+        String data = base64Encode(key);
+        redisTemplate.opsForValue().set(data, value, offset);
+        return data;
+    }
+
+    @Override
+    public String getLogin(String key) {
+        if (key == null || !redisTemplate.hasKey(key)) {
+            return null;
+        }
+        System.out.println(redisTemplate.opsForValue().get(key));
+        return base64Decode(Objects.requireNonNull(redisTemplate.opsForValue().get(key)).toString());
+    }
+
+
+    public String base64Encode(String data){
+        return Base64.getEncoder().encodeToString(data .getBytes());
+    }
+
+    public String base64Decode(String data){
+        return new String(Base64.getDecoder().decode(data));
     }
 }

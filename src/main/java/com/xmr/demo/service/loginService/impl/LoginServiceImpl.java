@@ -25,10 +25,10 @@ public class LoginServiceImpl extends BaseService implements LoginService {
             if(userData.getPassword().equals(user.getPassword())){
                 String data = userData.getId()+"";
                 request.getSession().setAttribute("user",userData);
-                String token = base64Encode(data);
-                redisUntil.set(token,JSONObject.toJSONString(userData),1800);
-                Cookie cookie = new Cookie("loginToken",token);
-                cookie.setMaxAge(1800);
+                data = redisUntil.setLogin(data, JSONObject.toJSONString(userData), 3600);
+                Cookie cookie = new Cookie("loginToken",data);
+                cookie.setMaxAge(3600);
+                cookie.setPath("/");
                 response.addCookie(cookie);
                 return doSuccessMsg();
             }else{

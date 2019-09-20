@@ -56,12 +56,4 @@ public class BaseService {
         }
         return false;
     }
-
-    public String base64Encode(String data){
-        return Base64.getEncoder().encodeToString(data .getBytes());
-    }
-
-    public String base64Decode(String data){
-        return new String(Base64.getDecoder().decode(data));
-    }
 }

@@ -81,7 +81,7 @@ img { max-width: 100%; }
 
 /***** Top content *****/
 .top-content{
-	background-image: url("../static/images/login/1.jpg");
+	background-image: url("/static/images/login/1.jpg");
 }
 
 .inner-bg {
