@@ -1,8 +1,14 @@
 package com.xmr.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Character {
+@Setter
+@Getter
+public class Character implements Serializable {
     private Integer id;
     private String name;
     private Integer sex;
@@ -12,78 +18,6 @@ public class Character {
     private Integer statics;
     private String creator;
     private Date createDate;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public String getSimpleIntroduce() {
-        return simpleIntroduce;
-    }
-
-    public Integer getStatics() {
-        return statics;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
-    }
-
-    public void setSimpleIntroduce(String simpleIntroduce) {
-        this.simpleIntroduce = simpleIntroduce;
-    }
-
-    public void setStatics(Integer statics) {
-        this.statics = statics;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
 
     @Override
     public String toString() {

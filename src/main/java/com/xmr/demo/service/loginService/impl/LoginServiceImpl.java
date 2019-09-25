@@ -1,6 +1,6 @@
 package com.xmr.demo.service.loginService.impl;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONArray;
 import com.xmr.demo.dao.UserMapper;
 import com.xmr.demo.domain.User;
 import com.xmr.demo.service.BaseService;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 @Service
 public class LoginServiceImpl extends BaseService implements LoginService {
@@ -20,13 +21,12 @@ public class LoginServiceImpl extends BaseService implements LoginService {
 
     @Override
     public String login(HttpServletRequest request, HttpServletResponse response, User user) {
-        User userData = userMapper.findByUserName(user.getUserName());
+        User userData = userMapper.findByUserName(user.getUsername());
         if(!isEmpty(userData)){
             if(userData.getPassword().equals(user.getPassword())){
-                String data = userData.getId()+"";
                 request.getSession().setAttribute("user",userData);
-                data = redisUntil.setLogin(data, JSONObject.toJSONString(userData), 3600);
-                Cookie cookie = new Cookie("loginToken",data);
+                String key = redisUntil.setLogin(UUID.randomUUID().toString(), JSONArray.toJSONString(userData));
+                Cookie cookie = new Cookie("loginToken",key);
                 cookie.setMaxAge(3600);
                 cookie.setPath("/");
                 response.addCookie(cookie);

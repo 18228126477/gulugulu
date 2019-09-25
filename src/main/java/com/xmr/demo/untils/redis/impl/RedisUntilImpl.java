@@ -1,20 +1,23 @@
 package com.xmr.demo.untils.redis.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.xmr.demo.untils.redis.RedisUntil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 
 @Component
 public class RedisUntilImpl implements RedisUntil {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 是否存在键为key的某条数据
@@ -77,21 +80,15 @@ public class RedisUntilImpl implements RedisUntil {
     }
 
     @Override
-    public String setLogin(String key, Object value, long offset) {
-        String data = base64Encode(key);
-        redisTemplate.opsForValue().set(data, value, offset);
-        return data;
+    public String setLogin(String key, String value) {
+        redisTemplate.opsForValue().set(key, value,  3600, TimeUnit.SECONDS);
+        return key;
     }
 
     @Override
-    public String getLogin(String key) {
-        if (key == null || !redisTemplate.hasKey(key)) {
-            return null;
-        }
-        System.out.println(redisTemplate.opsForValue().get(key));
-        return base64Decode(Objects.requireNonNull(redisTemplate.opsForValue().get(key)).toString());
+    public Map getLogin(String key) {
+        return JSONArray.parseObject(Objects.requireNonNull(redisTemplate.opsForValue().get(key)).toString());
     }
-
 
     public String base64Encode(String data){
         return Base64.getEncoder().encodeToString(data .getBytes());
