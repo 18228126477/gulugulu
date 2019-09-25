@@ -24,9 +24,9 @@ public class LoginServiceImpl extends BaseService implements LoginService {
         User userData = userMapper.findByUserName(user.getUsername());
         if(!isEmpty(userData)){
             if(userData.getPassword().equals(user.getPassword())){
-                request.getSession().setAttribute("user",userData);
+                request.getSession().setAttribute(USER,userData);
                 String key = redisUntil.setLogin(UUID.randomUUID().toString(), JSONArray.toJSONString(userData));
-                Cookie cookie = new Cookie("loginToken",key);
+                Cookie cookie = new Cookie(TOKEN,key);
                 cookie.setMaxAge(3600);
                 cookie.setPath("/");
                 response.addCookie(cookie);

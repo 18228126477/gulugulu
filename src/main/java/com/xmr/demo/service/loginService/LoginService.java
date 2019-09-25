@@ -8,5 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface LoginService {
 
+    String USER = "user";
+    String TOKEN = "loginToken";
+
     String login(HttpServletRequest request, HttpServletResponse response, User user);
 }

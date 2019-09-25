@@ -1,13 +1,11 @@
 package com.xmr.demo.common.interceptor;
 
-import com.alibaba.fastjson.JSON;
 import com.xmr.demo.dao.UserMapper;
 import com.xmr.demo.domain.User;
 import com.xmr.demo.untils.redis.RedisUntil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
