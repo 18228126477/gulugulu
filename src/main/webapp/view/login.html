@@ -33,7 +33,7 @@
 </head>
 <body>
 <!-- Top content -->
-<div class="top-content">
+<div class="top-content" style="background-image: url('../static/images/login/1.jpg')">
     <div class="inner-bg">
         <div class="container">
             <div class="row">
@@ -59,6 +59,7 @@
                         </div>
                     </div>
                     <div id="user" class="form-bottom">
+                        <input type="hidden" v-model="pageId">
                         <form role="form" action="" method="post" class="login-form">
                             <div class="form-group">
                                 <label class="sr-only">Username</label>
@@ -99,12 +100,21 @@
     new Vue({
         el: '#user',
         data: {
+            pageId:"",
             username: "",
             password:""
         },
+        mounted(){
+            this.init();
+        },
         methods:{
+            init:function(){
+                this.$http.post('../login/loginId').then(function(res) {
+                    this.pageId=res.data;
+                })
+            },
             submission:function () {
-                let data ={username:this.username,password:this.password};
+                let data ={username:this.username,password:this.password,pageId:this.pageId};
                 this.$http.post('../login/login', data, {emulateJSON:true}).then(function(res) {
                     if(res.data.sign==="success"){
                         location.href="../index/index";

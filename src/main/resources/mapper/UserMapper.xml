@@ -16,29 +16,29 @@
     <select id="findAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from dome_user
+        from demo_user
     </select>
 
     <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List" />
-        from dome_user
+        from demo_user
         where id = #{id}
     </select>
 
     <insert id="saveUser" parameterMap="User" useGeneratedKeys="true" keyProperty="id">
-        insert into dome_user(id,username,password)
+        insert into demo_user(id,username,password)
         values (#{id},#{username},#{password})
     </insert>
 
     <delete id="deleteUser" parameterType="java.lang.Integer">
-        delete from dome_user where id = #{id}
+        delete from demo_user where id = #{id}
     </delete>
 
     <select id="findByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" />
-        from dome_user
+        from demo_user
         where username = #{username}
     </select>
 </mapper>

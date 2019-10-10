@@ -18,33 +18,47 @@ public class BaseService {
     private String ERR = "err";
     private String DATA = "data";
 
-    public String doSuccessMsg(){
+    protected String doSuccessMsg(){
         Map<String,Object> result = new HashMap<>();
         result.put(SIGN,SUCCESS);
         return JSONObject.toJSONString(result);
     }
 
-    public String doSuccess(Object data){
+    protected String doSuccess(Object data){
         Map<String,Object> result = new HashMap<>();
         result.put(SIGN,SUCCESS);
         result.put(DATA,data);
         return JSONObject.toJSONString(result);
     }
 
-    public String doErrMsg(){
+    protected String doErrMsg(){
         Map<String,Object> result = new HashMap<>();
         result.put(SIGN,ERR);
         return JSONObject.toJSONString(result);
     }
 
-    public String doErr(Object data){
+    protected String doErr(Object data){
         Map<String,Object> result = new HashMap<>();
         result.put(SIGN,ERR);
         result.put(DATA,data);
         return JSONObject.toJSONString(result);
     }
 
-    public boolean isEmpty(Object obj){
+    protected Date getNowDate(){
+        return new Date();
+    }
+
+    protected Boolean checkTime(Date date){
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MINUTE, +5);
+        Date newDate = new Date();
+        if(newDate.after(calendar.getTime()))
+            return Boolean.TRUE;
+        return Boolean.FALSE;
+    }
+
+    protected boolean isEmpty(Object obj){
         if (obj == null) {
             return true;
         }else if(obj instanceof CharSequence) {
