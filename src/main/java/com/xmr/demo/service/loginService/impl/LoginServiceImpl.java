@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -39,7 +41,7 @@ public class LoginServiceImpl extends BaseService implements LoginService {
                     cookie.setMaxAge(3600);
                     cookie.setPath("/");
                     response.addCookie(cookie);
-                    return doSuccessMsg();
+                    return doSuccess();
                 }else{
                     return doErr("密码错误，请输入正确密码");
                 }

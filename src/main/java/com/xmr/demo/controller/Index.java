@@ -26,6 +26,4 @@ public class Index extends BaseController{
     public String webSocketTest(){
         return "webSocketTest";
     }
-
-
 }

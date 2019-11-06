@@ -1,7 +1,7 @@
 package com.xmr.demo.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xmr.demo.untils.redis.RedisUntil;
+import com.xmr.demo.untils.until.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,35 +13,22 @@ public class BaseService {
     @Autowired
     public RedisUntil redisUntil;
 
-    private String SIGN = "sign";
-    private String SUCCESS = "success";
-    private String ERR = "err";
-    private String DATA = "data";
+    private Result result = new Result();
 
-    protected String doSuccessMsg(){
-        Map<String,Object> result = new HashMap<>();
-        result.put(SIGN,SUCCESS);
-        return JSONObject.toJSONString(result);
+    public String doSuccess(Object data){
+        return result.doSuccess(data);
     }
 
-    protected String doSuccess(Object data){
-        Map<String,Object> result = new HashMap<>();
-        result.put(SIGN,SUCCESS);
-        result.put(DATA,data);
-        return JSONObject.toJSONString(result);
+    public String doSuccess(){
+        return result.doSuccessMsg();
     }
 
-    protected String doErrMsg(){
-        Map<String,Object> result = new HashMap<>();
-        result.put(SIGN,ERR);
-        return JSONObject.toJSONString(result);
+    public String doErr(Object data){
+        return result.doErr(data);
     }
 
-    protected String doErr(Object data){
-        Map<String,Object> result = new HashMap<>();
-        result.put(SIGN,ERR);
-        result.put(DATA,data);
-        return JSONObject.toJSONString(result);
+    public String doErr(){
+        return result.doErrMsg();
     }
 
     protected Date getNowDate(){

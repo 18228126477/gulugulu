@@ -6,21 +6,17 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.xmr.demo.param.AlipayOrderParam;
 import com.xmr.demo.param.AlipayParam;
-import com.xmr.demo.service.BaseService;
-import com.xmr.demo.service.alipayService.AliPayService;
-import com.xmr.demo.untils.CustomAnnotationScan;
+import com.xmr.demo.service.alipayService.PayService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Service
-public class AlipayServiceImpl extends BaseService implements AliPayService  {
+public class AliPayServiceImpl implements PayService {
 
-    private static final Logger logger = LoggerFactory.getLogger(CustomAnnotationScan.class);
+    private static final Logger logger = LoggerFactory.getLogger(AliPayServiceImpl.class);
 
     @Value("${ali_return_url}")
     private String ali_return_url;
@@ -49,8 +45,9 @@ public class AlipayServiceImpl extends BaseService implements AliPayService  {
     @Value("${sign_type}")
     private String sign_type;
 
+
     @Override
-    public String alipay(AlipayParam alipayParam) {
+    public String pay(AlipayParam alipayParam) {
         AlipayClient alipayClient = new DefaultAlipayClient(url, appid, private_key, "json", "UTF-8", ali_public_key, sign_type);
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
         alipayRequest.setReturnUrl(ali_return_url);
@@ -71,13 +68,9 @@ public class AlipayServiceImpl extends BaseService implements AliPayService  {
         return webForm;
     }
 
-    @Override
     public String synchronous(HttpServletRequest request) {
         return null;
     }
 
-    @Override
-    public void notify(HttpServletRequest request, HttpServletResponse response) {
-
-    }
+    public void notify(HttpServletRequest request, HttpServletResponse response) {}
 }
