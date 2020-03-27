@@ -36,7 +36,7 @@ public class ControllerFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         // response.setHeader("Access-Control-Allow-Origin",reqs.getHeader("Origin"));
         response.setHeader("Access-Control-Allow-Origin","*");
         response.setHeader("Access-Control-Allow-Credentials", "true");

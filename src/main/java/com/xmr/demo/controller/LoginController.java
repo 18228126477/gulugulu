@@ -6,6 +6,8 @@ import com.xmr.demo.service.loginService.LoginService;
 import com.xmr.demo.untils.until.Cipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,7 +23,8 @@ public class LoginController extends BaseController{
     private LoginService loginService;
 
     @RequestMapping("index")
-    public String login(){
+    public String login(ModelMap model){
+        model.addAttribute("aa");
         return "login";
     }
 
@@ -30,8 +33,8 @@ public class LoginController extends BaseController{
     public int loginId(HttpServletRequest request){
         int pageId = Cipher.pageId();
         PageExpire pageExpire = new PageExpire();
-        pageExpire.setExpireDate(getNowDate());
-        pageExpire.setPageId(pageId);
+        //pageExpire.setExpireDate(getNowDate());
+        //pageExpire.setPageId(pageId);
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(300);
         session.setAttribute("pageExpire",pageExpire);
