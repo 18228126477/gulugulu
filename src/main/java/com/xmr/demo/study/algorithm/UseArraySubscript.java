@@ -12,8 +12,9 @@ public class UseArraySubscript {
             ++cnt[c];
         }
         StringBuilder sb = new StringBuilder();
-        for(int i:cnt)
+        for(int i:cnt){
             sb.append(i).append(" ");
+        }
         System.out.println(sb.toString());
     }
 
