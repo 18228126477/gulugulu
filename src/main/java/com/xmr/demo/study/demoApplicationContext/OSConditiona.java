@@ -22,9 +22,11 @@ public class OSConditiona implements Condition {
         ClassLoader classLoader = conditionContext.getClassLoader();
         //获取当前环境信息
         Environment environment = conditionContext.getEnvironment();
+        //获取操作系统
+        String property = environment.getProperty("os.name");
         //获取bean定义的注册类
         BeanDefinitionRegistry registry = conditionContext.getRegistry();
-        boolean person2 = registry.containsBeanDefinition("wangwu");
+        boolean person2 = property.contains("Win");
         if(person2){
             return true;
         }

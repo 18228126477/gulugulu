@@ -3,6 +3,17 @@ package com.xmr.demo.study.demoApplicationContext;
 import org.springframework.context.annotation.*;
 
 @Configuration
+/**
+ * 给容器注册组件的方式
+ * 1.包扫描+组件注解（@controller,@service,@component,@repository）
+ * 2.@Bean 当导入的是第三方包时使用，比如集成redis，mybatis
+ * 3.@Import 快速给容器中注入一个组件
+ *      1.在类上引入@Import注解，并且写入需要注入得组件
+ *      2.使用ImportSelector接口，返回的数组就是需要注入的组件的全类名
+ *      3.使用ImportBeanDefinitionRegistrar接口，可以自定义的注册bean定义
+ *      调用顺序，首先注册的事ImportSelector接口的实现类的组件，再注册ImportBeanDefinitionRegistrar实现类的组件
+ * */
+@Import({ImportBean.class,MyImportBeanDefinitionRegistrar.class,MyImportSelector.class})
 public class MainConfig2 {
 
     /**
@@ -42,11 +53,15 @@ public class MainConfig2 {
         return new Person("zhaoLiu",25);
     }
 
+
     /**
-     * 给容器注册组件的方式
-     * 1.包扫描+组件注解（@controller,@service,@component,@repository）
-     * 2.@Bean 当导入的是第三方包时使用，比如集成redis，mybatis
-     * 3.@Import 快速给容器中注入一个组件
-     *
+     * 使用Spring提供的FactoryBean (工厂Bean) ;
+     * 1)、默认获取到的是工厂bean调用getobject创建的对象
+     * 2)、要获取工厂Bean本身，我们需要给id前面加一个&
+     *      &colorFactoryBean
      * */
+    @Bean
+    public MyFactoryBean myFactoryBean(){
+        return new MyFactoryBean();
+    }
 }
