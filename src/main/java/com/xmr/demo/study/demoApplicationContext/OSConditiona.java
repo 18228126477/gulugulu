@@ -1,5 +1,6 @@
 package com.xmr.demo.study.demoApplicationContext;
 
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.Condition;
@@ -21,8 +22,12 @@ public class OSConditiona implements Condition {
         ClassLoader classLoader = conditionContext.getClassLoader();
         //获取当前环境信息
         Environment environment = conditionContext.getEnvironment();
-        //获取bean定义的一些信息
+        //获取bean定义的注册类
         BeanDefinitionRegistry registry = conditionContext.getRegistry();
+        boolean person2 = registry.containsBeanDefinition("wangwu");
+        if(person2){
+            return true;
+        }
         return false;
     }
 }

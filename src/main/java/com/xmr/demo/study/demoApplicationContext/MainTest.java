@@ -60,7 +60,7 @@ public class MainTest {
         ConfigurableEnvironment environment = annotationConfigApplicationContext.getEnvironment();
         //获取操作系统
         String property = environment.getProperty("os.name");
-        System.out.println(property);
         Map<String, Person> beansOfType = annotationConfigApplicationContext.getBeansOfType(Person.class);
+        System.out.println(beansOfType);
     }
 }
