@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoApplicationContext;
+package com.xmr.demo.study.demoapplicationcontext;
 
 import org.springframework.context.annotation.*;
 
@@ -56,7 +56,7 @@ public class MainConfig2 {
 
     /**
      * 使用Spring提供的FactoryBean (工厂Bean) ;
-     * 1)、默认获取到的是工厂bean调用getobject创建的对象
+     * 1)、默认获取到的是工厂bean调用getObject创建的对象
      * 2)、要获取工厂Bean本身，我们需要给id前面加一个&
      *      &colorFactoryBean
      * */

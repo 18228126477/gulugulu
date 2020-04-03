@@ -1,10 +1,7 @@
-package com.xmr.demo.study.demoApplicationContext;
+package com.xmr.demo.study.demoapplicationcontext;
 
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
-
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * 自定义逻辑返回需要的组件
@@ -16,6 +13,6 @@ public class MyImportSelector implements ImportSelector {
      * */
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        return new String[]{"com.xmr.demo.study.demoApplicationContext.PersonDao"};
+        return new String[]{"com.xmr.demo.study.demoapplicationcontext.PersonDao"};
     }
 }

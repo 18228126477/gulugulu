@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoApplicationContext;
+package com.xmr.demo.study.demoapplicationcontext;
 
 import org.springframework.beans.factory.FactoryBean;
 
