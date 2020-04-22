@@ -11,7 +11,8 @@ public class MainTest {
     @Test
     public void test(){
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ConfigLifeCycle.class);
-
+        Car car = applicationContext.getBean(Car.class);
+        System.out.println(car);
         //关闭ioc容器
         applicationContext.close();
     }
