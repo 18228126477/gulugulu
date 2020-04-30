@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanwutowired;
+package com.xmr.demo.study.beanautowired;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
