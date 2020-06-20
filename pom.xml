@@ -21,12 +21,12 @@
     </properties>
 
     <dependencies>
-        <!--外部部署tomcat -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+<!--        &lt;!&ndash;外部部署tomcat &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
         <!-- 支付宝支付 -->
         <dependency>
             <groupId>com.alipay.sdk</groupId>
