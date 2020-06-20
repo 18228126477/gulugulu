@@ -1,7 +1,6 @@
-package com.xmr.demo.study.demoApplicationContext;
+package com.xmr.demo.study.demoapplicationcontext;
 
 import org.springframework.context.annotation.*;
-import org.springframework.stereotype.Controller;
 
 /**
  * 该注解标志这是一个配置类
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Controller;
  * FilterType.CUSTOM:使用自定义
  */
 /**
- * @ComponentScan(value = "com.xmr.demo.study.demoApplicationContext",
+ * @ComponentScan(value = "com.xmr.demo.study.demoapplicationcontext",
  *         excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION,classes = {Controller.class})})
  * */
 /**
@@ -26,14 +25,14 @@ import org.springframework.stereotype.Controller;
  * */
 /**
  * @ComponentScans(value = {
- *         @ComponentScan(value = "com.xmr.demo.study.demoApplicationContext",
+ *         @ComponentScan(value = "com.xmr.demo.study.demoapplicationcontext",
  *                 excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION,classes = {Controller.class})})
  * })
  * */
 /**
  * 自定义扫描路劲
  * */
- @ComponentScan(value = "com.xmr.demo.study.demoApplicationContext",
+ @ComponentScan(value = "com.xmr.demo.study.demoapplicationcontext",
          includeFilters = {@ComponentScan.Filter(type = FilterType.CUSTOM,classes = {FilterCustom.class})},useDefaultFilters = false)
 public class MainConfig {
     /**

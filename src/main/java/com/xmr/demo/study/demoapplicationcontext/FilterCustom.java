@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoApplicationContext;
+package com.xmr.demo.study.demoapplicationcontext;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.type.AnnotationMetadata;

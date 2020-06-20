@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoApplicationContext;
+package com.xmr.demo.study.demoapplicationcontext;
 
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -21,8 +21,14 @@ public class OSConditiona implements Condition {
         ClassLoader classLoader = conditionContext.getClassLoader();
         //获取当前环境信息
         Environment environment = conditionContext.getEnvironment();
-        //获取bean定义的一些信息
+        //获取操作系统
+        String property = environment.getProperty("os.name");
+        //获取bean定义的注册类
         BeanDefinitionRegistry registry = conditionContext.getRegistry();
+        boolean person2 = property.contains("Win");
+        if(person2){
+            return true;
+        }
         return false;
     }
 }

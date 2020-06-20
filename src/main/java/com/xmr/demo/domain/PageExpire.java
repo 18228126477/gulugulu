@@ -7,13 +7,27 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
 
-@Setter
-@Getter
 public class PageExpire  implements Serializable {
 
     private Integer pageId;
     @JsonFormat(timezone = "GMT+8")
     private Date expireDate;
+
+    public Integer getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(Integer pageId) {
+        this.pageId = pageId;
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
 
     @Override
     public String toString() {

@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoApplicationContext;
+package com.xmr.demo.study.demoapplicationcontext;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -58,9 +58,13 @@ public class MainTest {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
         //获取ioc容器运行环境
         ConfigurableEnvironment environment = annotationConfigApplicationContext.getEnvironment();
-        //获取操作系统
-        String property = environment.getProperty("os.name");
-        System.out.println(property);
         Map<String, Person> beansOfType = annotationConfigApplicationContext.getBeansOfType(Person.class);
+        System.out.println(beansOfType);
+        ImportFactoryBean bean = annotationConfigApplicationContext.getBean(ImportFactoryBean.class);
+        System.out.println(bean.getClass());
+        String[] beanDefinitionNames = annotationConfigApplicationContext.getBeanDefinitionNames();
+        for(String name:beanDefinitionNames){
+            System.out.println(name);
+        }
     }
 }
