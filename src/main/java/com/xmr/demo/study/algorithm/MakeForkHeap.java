@@ -40,8 +40,9 @@ public class MakeForkHeap<T extends Comparable<T>>{
         T integer = binaryHeap.get(start);
         while (begin>0){
             int i = integer.compareTo(binaryHeap.get(father));
-            if(i<0)
+            if(i<0){
                 break;
+            }
             else{
                 binaryHeap.set(begin,binaryHeap.get(father));
                 begin = father;
@@ -58,11 +59,13 @@ public class MakeForkHeap<T extends Comparable<T>>{
         T integer = binaryHeap.get(begin);
         while (left <= end && left + 1 <= end) {
             int i = binaryHeap.get(left).compareTo(binaryHeap.get(left + 1));
-            if (i < 0)
+            if (i < 0){
                 left++;
+            }
             i = integer.compareTo(binaryHeap.get(left));
-            if (i >= 0)
+            if (i >= 0){
                 break;
+            }
             else {
                 binaryHeap.set(begin, binaryHeap.get(left));
                 begin = left;
@@ -81,12 +84,14 @@ public class MakeForkHeap<T extends Comparable<T>>{
 
     //删除
     private Integer remove(T data){
-        if(binaryHeap.isEmpty())
+        if(binaryHeap.isEmpty()){
             return null;
+        }
         int i = binaryHeap.indexOf(data);
         int size = binaryHeap.size();
-        if(i == -1)
+        if(i == -1){
             return null;
+        }
         binaryHeap.set(i,binaryHeap.get(size-1));
         binaryHeap.remove(size-1);
         if(size >1){
@@ -98,8 +103,9 @@ public class MakeForkHeap<T extends Comparable<T>>{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < binaryHeap.size(); i++)
+        for (int i = 0; i < binaryHeap.size(); i++) {
             sb.append(binaryHeap.get(i) + " ");
+        }
         return sb.toString();
     }
 }
