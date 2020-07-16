@@ -2,6 +2,7 @@ package com.xmr.demo.study.demoapplicationcontext;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 import java.util.Map;
@@ -14,7 +15,7 @@ public class MainTest {
     @Test
     public void main1() {
         //通过xml文件方式给spring容器注入bean
-        //ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
         //通过注解的方式给spring容器注入一个bean
         AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
         //通过类型获取容器中的bean

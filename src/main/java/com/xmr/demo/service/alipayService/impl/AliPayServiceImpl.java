@@ -10,25 +10,27 @@ import com.xmr.demo.service.alipayService.PayService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@PropertySource("classpath:/aliPay.properties")
 public class AliPayServiceImpl implements PayService {
 
     private static final Logger logger = LoggerFactory.getLogger(AliPayServiceImpl.class);
 
     @Value("${ali_return_url}")
-    private String ali_return_url;
+    private String aliReturnUrl;
 
     @Value("${ali_notify_url}")
-    private String ali_notify_url;
+    private String aliNotifyUrl;
 
     @Value("${product_code}")
-    private String product_code;
+    private String productCode;
 
     @Value("${timeout_express}")
-    private String timeout_express;
+    private String timeoutExpress;
 
     @Value("${url}")
     private String url;
@@ -37,27 +39,27 @@ public class AliPayServiceImpl implements PayService {
     private String appid;
 
     @Value("${private_key}")
-    private String private_key;
+    private String privateKey;
 
     @Value("${ali_public_key}")
-    private String ali_public_key;
+    private String aliPublicKey;
 
     @Value("${sign_type}")
-    private String sign_type;
+    private String signType;
 
 
     @Override
     public String pay(AlipayParam alipayParam) {
-        AlipayClient alipayClient = new DefaultAlipayClient(url, appid, private_key, "json", "UTF-8", ali_public_key, sign_type);
+        AlipayClient alipayClient = new DefaultAlipayClient(url, appid, privateKey, "json", "UTF-8", aliPublicKey, signType);
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-        alipayRequest.setReturnUrl(ali_return_url);
-        alipayRequest.setNotifyUrl(ali_notify_url);
+        alipayRequest.setReturnUrl(aliReturnUrl);
+        alipayRequest.setNotifyUrl(aliNotifyUrl);
         AlipayOrderParam alipayOrderParam = new AlipayOrderParam();
         alipayOrderParam.setOut_trade_no(alipayParam.getOrderId());//唯一标识
         alipayOrderParam.setSubject(alipayParam.getOrderName());
         alipayOrderParam.setTotal_amount(alipayParam.getAmount());
-        alipayOrderParam.setProduct_code(product_code);
-        alipayOrderParam.setTimeout_express(timeout_express);
+        alipayOrderParam.setProduct_code(productCode);
+        alipayOrderParam.setTimeout_express(timeoutExpress);
         alipayRequest.setBizContent(JSON.toJSONString(alipayOrderParam));
         String webForm = "";
         try {

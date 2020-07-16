@@ -8,9 +8,11 @@ import java.util.Map;
 public class Result {
 
     private final String FLAG = "flag";
+    private final String DATA = "data";
+    private final String CODE = "code";
     private final Boolean SUCCESS = Boolean.TRUE;
     private final Boolean ERR = Boolean.FALSE;
-    private final String DATA = "data";
+
 
     public String doSuccessMsg(){
         Map<String,Object> result = new HashMap<>();
@@ -28,6 +30,14 @@ public class Result {
     public String doErrMsg(){
         Map<String,Object> result = new HashMap<>();
         result.put(FLAG,ERR);
+        result.put(CODE,404);
+        return JSONObject.toJSONString(result);
+    }
+
+    public String doErrMsg(String code){
+        Map<String,Object> result = new HashMap<>();
+        result.put(FLAG,ERR);
+        result.put(CODE,code);
         return JSONObject.toJSONString(result);
     }
 
@@ -35,6 +45,15 @@ public class Result {
         Map<String,Object> result = new HashMap<>();
         result.put(FLAG,ERR);
         result.put(DATA,data);
+        result.put(CODE,404);
+        return JSONObject.toJSONString(result);
+    }
+
+    public String doErr(Object data,String code){
+        Map<String,Object> result = new HashMap<>();
+        result.put(FLAG,ERR);
+        result.put(DATA,data);
+        result.put(CODE,code);
         return JSONObject.toJSONString(result);
     }
 }

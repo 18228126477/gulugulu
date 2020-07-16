@@ -10,18 +10,63 @@ import java.util.concurrent.*;
 
 public class DemoOrdinaryTests {
     public static void main(String[] args){
-        List<Integer> arr= Arrays.asList(3,1,15,2,9,6,3,2,7,1);
-        List<Integer> result= new ArrayList<>();
-        ThreadPoolExecutor pool = new ThreadPoolExecutor(0,Integer.MAX_VALUE,60L,TimeUnit.SECONDS,new SynchronousQueue<>());
-        arr.forEach(n-> pool.execute(() -> {
-            try {
-                Thread.sleep(n*100);
-                result.add(n);
-                System.out.println(n);
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-        }));
+        List<Integer> arr= Arrays.asList(651,
+                865,
+                520,
+                913,
+                77,
+                152,
+                280,
+                279,
+                286,
+                269,
+                298,
+                398,
+                65,
+                101,
+                465,
+                538,
+                733,
+                297,
+                93,
+                193,
+                107,
+                119,
+                186,
+                147,
+                60,
+                131,
+                79,
+                209,
+                115,
+                1030,
+                161,
+                428,
+                184,
+                79,
+                60,
+                543,
+                86,
+                191,
+                35,
+                109,
+                158);
+        Integer j = 0;
+        for(Integer i:arr){
+            j+=i;
+        }
+        System.out.println(j);
+//        List<Integer> result= new ArrayList<>();
+//        ThreadPoolExecutor pool = new ThreadPoolExecutor(0,Integer.MAX_VALUE,60L,TimeUnit.SECONDS,new SynchronousQueue<>());
+//        arr.forEach(n-> pool.execute(() -> {
+//            try {
+//                Thread.sleep(n*100);
+//                result.add(n);
+//                System.out.println(n);
+//            }catch (InterruptedException e){
+//                e.printStackTrace();
+//            }
+//        }));
     }
 
     public static void data(){
