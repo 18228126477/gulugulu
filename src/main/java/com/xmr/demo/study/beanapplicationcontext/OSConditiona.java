@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoapplicationcontext;
+package com.xmr.demo.study.beanapplicationcontext;
 
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;

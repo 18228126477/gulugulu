@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoapplicationcontext;
+package com.xmr.demo.study.beanapplicationcontext;
 
 import org.springframework.context.annotation.*;
 
@@ -32,7 +32,7 @@ import org.springframework.context.annotation.*;
 /**
  * 自定义扫描路劲
  * */
- @ComponentScan(value = "com.xmr.demo.study.demoapplicationcontext",
+ @ComponentScan(value = "com.xmr.demo.study.beanapplicationcontext",
          includeFilters = {@ComponentScan.Filter(type = FilterType.CUSTOM,classes = {FilterCustom.class})},useDefaultFilters = false)
 public class MainConfig {
     /**

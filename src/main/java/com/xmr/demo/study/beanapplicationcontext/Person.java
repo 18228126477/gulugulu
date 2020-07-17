@@ -1,4 +1,4 @@
-package com.xmr.demo.study.demoapplicationcontext;
+package com.xmr.demo.study.beanapplicationcontext;
 
 public class Person {
 
