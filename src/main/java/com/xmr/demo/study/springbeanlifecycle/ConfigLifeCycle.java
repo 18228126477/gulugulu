@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanlifecycle;
+package com.xmr.demo.study.springbeanlifecycle;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -33,7 +33,7 @@ import org.springframework.context.annotation.PropertySource;
  *  
  * */
 @PropertySource(value = {"classpath:/dao.properties"})
-@ComponentScan("com.xmr.demo.study.beanlifecycle")
+@ComponentScan("com.xmr.demo.study.springbeanlifecycle")
 @Configuration
 public class ConfigLifeCycle {
 

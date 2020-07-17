@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanapplicationcontext;
+package com.xmr.demo.study.springbeanapplicationcontext;
 
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;

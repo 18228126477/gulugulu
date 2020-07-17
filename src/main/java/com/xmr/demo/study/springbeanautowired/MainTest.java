@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanautowired;
+package com.xmr.demo.study.springbeanautowired;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

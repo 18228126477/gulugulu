@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanlifecycle;
+package com.xmr.demo.study.springbeanlifecycle;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

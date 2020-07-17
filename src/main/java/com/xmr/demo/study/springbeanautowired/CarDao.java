@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanautowired;
+package com.xmr.demo.study.springbeanautowired;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;

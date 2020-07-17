@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanapplicationcontext;
+package com.xmr.demo.study.springbeanapplicationcontext;
 
 public class Person {
 

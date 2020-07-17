@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanlifecycle;
+package com.xmr.demo.study.springbeanlifecycle;
 
 import org.springframework.beans.factory.annotation.Value;
 

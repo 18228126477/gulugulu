@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanautowired;
+package com.xmr.demo.study.springbeanautowired;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -39,7 +39,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@ComponentScan({"com.xmr.demo.study.beanautowired"})
+@ComponentScan({"com.xmr.demo.study.springbeanautowired"})
 public class MainConfigOfAutowired {
 
     @Bean("bookDao2")

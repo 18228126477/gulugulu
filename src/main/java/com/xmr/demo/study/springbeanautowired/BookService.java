@@ -1,4 +1,4 @@
-package com.xmr.demo.study.beanautowired;
+package com.xmr.demo.study.springbeanautowired;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

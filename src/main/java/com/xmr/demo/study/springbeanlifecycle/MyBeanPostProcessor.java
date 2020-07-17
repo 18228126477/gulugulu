@@ -1,10 +1,8 @@
-package com.xmr.demo.study.beanlifecycle;
+package com.xmr.demo.study.springbeanlifecycle;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 @Component
 public class MyBeanPostProcessor implements BeanPostProcessor {
