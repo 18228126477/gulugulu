@@ -8,12 +8,12 @@ import org.springframework.core.type.AnnotationMetadata;
 public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry) {
-        boolean definition = beanDefinitionRegistry.containsBeanDefinition("com.xmr.demo.study.demoapplicationcontext.PersonDao");
+        boolean definition = beanDefinitionRegistry.containsBeanDefinition("com.xmr.demo.study.springbeanapplicationcontext.PersonDao");
         if(!definition){
-            RootBeanDefinition rootBeanDefinition = new RootBeanDefinition("com.xmr.demo.study.demoapplicationcontext.PersonDao");
+            RootBeanDefinition rootBeanDefinition = new RootBeanDefinition("com.xmr.demo.study.springbeanapplicationcontext.PersonDao");
             beanDefinitionRegistry.registerBeanDefinition("PersonDao1",rootBeanDefinition);
         }else{
-            RootBeanDefinition rootBeanDefinition = new RootBeanDefinition("com.xmr.demo.study.demoapplicationcontext.PersonService");
+            RootBeanDefinition rootBeanDefinition = new RootBeanDefinition("com.xmr.demo.study.springbeanapplicationcontext.PersonService");
             beanDefinitionRegistry.registerBeanDefinition("PersonService",rootBeanDefinition);
         }
     }

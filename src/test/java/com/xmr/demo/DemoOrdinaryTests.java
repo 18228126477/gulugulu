@@ -67,6 +67,16 @@ public class DemoOrdinaryTests {
 //                e.printStackTrace();
 //            }
 //        }));
+        String[] num = {"22","33","44"};
+        int[] weight = new int[num.length+1];
+        weight[0] = 0;
+        for(int i=1;i<weight.length;i++){
+            weight[i]=Integer.valueOf(num[i-1]);
+        }
+        for(int a:weight){
+            System.out.println(a);
+        }
+
     }
 
     public static void data(){

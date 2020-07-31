@@ -6,7 +6,8 @@ public class InputStreamTest {
 
     public static void filterTest(){
         try{
-            InputStream fileInputStream = new FileInputStream("C:/Users/p/Desktop/aaa.txt");
+            FileInputStream fileInputStream = new FileInputStream("C:/Users/p/Desktop/aaa.txt");
+            new BufferedInputStream(fileInputStream);
             InputStreamReader is = new InputStreamReader(fileInputStream,"GBK");
             FilterReader br = new PushbackReader(is);
             char[] c = new char[10];
