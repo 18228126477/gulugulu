@@ -8,7 +8,8 @@ import java.util.List;
 
 public class TestDome {
     public static void main(String[] args) {
-        char a= 32767;
-        System.out.println(a);
+        System.out.println(true^true);
+        System.out.println(false^true);
+        System.out.println(false^false);
     }
 }
