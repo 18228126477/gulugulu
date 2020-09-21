@@ -16,6 +16,14 @@ import org.springframework.context.annotation.Configuration;
  * BeanDefinitionRegistryPostProcessor：
  *      postProcessBeanFactory(ConfigurableListableBeanFactory var1)
  *      在所有bean定义信息将要被加载，bean实例未创建
+ *      优于BeanFactoryPostProcessor执行
+ *      可以利用BeanDefinitionRegistryPostProcessor再添加一些额外的组件
+ *      原理：
+ *          1.先创建容器
+ *          2.调用refresh()--》invokeBeanFactoryPostProcessors(beanFactory)
+ *          3.从容器种获取到所有的BeanDefinitionRegistryPostProcessor组件
+ *          4.依次触发所有的postProcessBeanDefinitionRegistry()
+ *          5.再依次触发所有的postProcessBeanFactory()
  * BeanDefinitionRegistry：bean定义信息的保存中心，以后beanFactory就是按照BeanDefinitionRegistry保存的bean定义信息创建bean实例；
  * */
 @ComponentScan(value="com.xmr.demo.study.springext")
