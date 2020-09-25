@@ -1,0 +1,74 @@
+spring容器的refresh()创建刷新
+1.prepareRefresh()刷新前的预处理
+    1）initPropertySources()初始化一些属性设置，子类自定义个性化的初始化方法
+    2）getEnvironment().validateRequiredProperties()检验属性的合法性
+    3）this.earlyApplicationEvents = new LinkedHashSet<>()保存容器中的一些早期事件
+2.obtainFreshBeanFactory()获取BeanFactory
+    1）refreshBeanFactory()创建BeanFactory
+        创建DefaultListableBeanFactory beanFactory = createBeanFactory()创建一个默认工厂
+        设置工厂的id标识
+    2）getBeanFactory()【DefaultListableBeanFactory】返回上一步创建好的BeanFactory
+3.prepareBeanFactory(beanFactory)BeanFactory的预准备工作（BeanFactory进行一些设置）
+    1）设置类加载器，支持的表达式解析器
+    2）添加部分的bean的后置处理器【ApplicationContextAwareProcessor】
+    3）设置忽略的自动装配接口
+    4）注册可以解析的自动装配，注册后能直接在任何组件中注入BeanFactory，ResourceLoader，ApplicationEventPublisher，ApplicationContext
+    5）添加部分的bean的后置处理器【ApplicationListenerDetector】
+    6）添加编译时的Aspectj支持
+    7）给BeanFactory中注册一些能用的组件
+        environment【ConfigurableEnvironment】配置环境
+        systemProperties【Map<String,Object>】系统属性
+        systemEnvironment【Map<String,Object>】系统环境
+4.postProcessBeanFactory(beanFactory)准备工作完成后进行的后置处理工作
+    1）子类通过重写postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)在BeanFactory创建并与准备完成以后做进一步设置
+==================================================以上是BeanFactory创建及预准备工作=======================================================
+5.invokeBeanFactoryPostProcessors执行BeanFactory的后置处理器（为容器中的Bean注册工厂处理器）
+    BeanFactoryPostProcessor：BeanFactory的后置处理器，在BeanFactory标准初始化之后执行，也就是上面那四步完成后
+    两个接口BeanFactoryPostProcessor，BeanDefinitionRegistryPostProcessor
+    执行invokeBeanFactoryPostProcessors(beanFactory, getBeanFactoryPostProcessors());
+    1）先执行BeanDefinitionRegistryPostProcessor的方法
+        1.获取所有的BeanDefinitionRegistryPostProcessor
+        2.先执行实现了PriorityOrdered优先级排序的BeanDefinitionRegistryPostProcessor
+        3.再执行实现了Ordered顺序接口的BeanDefinitionRegistryPostProcessor
+        4.最后执行没有实现任何优先级排序接口的BeanDefinitionRegistryPostProcessor
+    2）再执行BeanFactoryPostProcessor的方法
+        1.获取所有的BeanFactoryPostProcessor
+        2.先执行实现了PriorityOrdered优先级排序的BeanFactoryPostProcessor
+        3.再执行实现了Ordered顺序接口的BeanFactoryPostProcessor
+        4.最后执行没有实现任何优先级排序接口的BeanFactoryPostProcessor
+6.registerBeanPostProcessors(beanFactory)注册Bean的后置处理器（用于拦截Bean的创建过程）
+    不同接口类型的BeanPostProcessor，在Bean创建前后的执行时机不一样
+    BeanPostProcessor
+    DestructionAwareBeanPostProcessor
+    InstantiationAwareBeanPostProcessor
+    SmartInstantiationAwareBeanPostProcessor
+    MergedBeanDefinitionPostProcessor
+    1）获取所有的BeanPostProcessor
+    2）先注册实现了PriorityOrdered优先级排序的BeanPostProcessor
+    3）再注册实现了Ordered优先级排序的BeanPostProcessor
+    4）再注册没有优先级排序的BeanPostProcessor
+    5）再注册MergedBeanDefinitionPostProcessor的BeanPostProcessor
+    6）最后注册ApplicationListenerDetector，来在Bean创建完成后检查是否是ApplicationListener，
+        如果是就放在容器的末端
+7.initMessageSource()初始化消息来源组件（做国际化功能，消息绑定，消息解析）
+    messageSource作用：取出国际化配置文件中的某个Key的值，能按照区域信息获取
+    1）获取BeanFactory
+    2）看容器中是否有id为messageSource的组件，类型是MessageSource的组件
+        如果有把名字赋值给MessageSource的组件
+        如果没有创建一个默认的DelegatingMessageSource，并把创建好的MessageSource注册到容器中
+    3）上两步后，以后获取国际化配置文件的值的时候，可以自动注入MessageSource
+8.initApplicationEventMulticaster()初始化事件派发器
+    1）获取BeanFactory
+    2）看容器中是否有id为applicationEventMulticaster的组件，
+        如果有则把applicationEventMulticaster赋值给ApplicationEventMulticaster
+        如果没有则创建一个默认的SimpleApplicationEventMulticaster，并注册到容器中
+9.onRefresh()在子容器内初始化其他特殊的bean，子类可重写此方法，在容器刷新时自定义逻辑
+10.registerListeners()给容器中注册所有项目中的监听器
+    1）获取所有的监听器，并注册到事件派发器中
+    2）获取容器中的ApplicationListener，并注册到事件派发器中
+    3）派发之前步骤产生的事件
+11.finishBeanFactoryInitialization(beanFactory)初始化所有剩下的单实例bean
+
+
+
+

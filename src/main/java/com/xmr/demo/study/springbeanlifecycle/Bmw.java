@@ -1,11 +1,12 @@
 package com.xmr.demo.study.springbeanlifecycle;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
+@Component("bmwA")
 public class Bmw {
 
     public Bmw(){
