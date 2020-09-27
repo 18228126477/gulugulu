@@ -68,6 +68,73 @@ spring容器的refresh()创建刷新
     2）获取容器中的ApplicationListener，并注册到事件派发器中
     3）派发之前步骤产生的事件
 11.finishBeanFactoryInitialization(beanFactory)初始化所有剩下的单实例bean
+    1）beanFactory.preInstantiateSingletons()初始化剩下得单实例Bean
+        1.获取容器中的所有bean，依次进行初始化和创建对象
+        2.获取bean的定义信息
+        3.如果bean不是抽象的，是单实例的，不是懒加载的
+            1）判断是否是FactoryBean，如果是则创建工厂bean
+            2）如果不是FactoryBean，就用getBean(beanName)创建
+                1.调用doGetBean(name, null, null, false)
+                2.getSingleton(beanName)获取缓存中保存的单实例bean，如果能获取到说明该bean已经被创建过
+            3）缓存中获取不到，就开始bean的创建过程
+            4）markBeanAsCreated(beanName)标记Bean，防止多线程创建bean时为单实例bean创建多个对象，所以创建前提前标记该bean已经被创建
+            5）getMergedLocalBeanDefinition(beanName)获取bean定义信息
+            6）mbd.getDependsOn()获取当前bean依赖的其他bean，如果有调用getBean(beanName)
+            7）启动单实例bean创建流程
+                1.调用createBean(beanName, mbd, args)
+                2.resolveBeforeInstantiation(beanName, mbdToUse)让BeanPostProcessors在创建bean之前进行拦截操作
+                    InstantiationAwareBeanPostProcessor提前执行
+                    先触发该接口的postProcessBeforeInstantiation(Class<?> beanClass, String beanName)，如果不为空
+                    再触发该接口的postProcessAfterInstantiation(Object bean, String beanName)
+                3.如果resolveBeforeInstantiation(beanName, mbdToUse)没有返回代理对象
+                4.调用doCreateBean(beanName, mbdToUse, args)创建bean
+                    1）createBeanInstance(beanName, mbd, args)创建bean实例
+                        利用工厂方法或者对象的构造器创建bean实例
+                    2）applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName)
+                        调用MergedBeanDefinitionPostProcessor
+                        触发该接口的postProcessMergedBeanDefinition(mbd, beanType, beanName)
+                    3）populateBean(beanName, mbd, instanceWrapper)为bean实例赋值
+                        赋值前：
+                        1.拿到InstantiationAwareBeanPostProcessor后置处理器执行postProcessAfterInstantiation()
+                        2.再拿到InstantiationAwareBeanPostProcessor后置处理器执行postProcessProperties()
+                        3.最后执行applyPropertyValues(beanName, mbd, bw, pvs)应用bean属性值，利用反射调用set方法赋值
+                    4）initializeBean(beanName, exposedObject, mbd)初始化bean
+                        1.invokeAwareMethods(beanName, bean)执行XXXAware接口方法
+                            如果实现了BeanNameAware、BeanClassLoaderAware、BeanFactoryAware则执行其回调方法
+                        2.在初始化之前执行applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName)
+                            执行所有后置处理器的postProcessBeforeInitialization(result, beanName)
+                        3.invokeInitMethods(beanName, wrappedBean, mbd)执行初始化方法
+                            1.是否是InitializingBean接口的Bean如果是则执行afterPropertiesSet()方法
+                            2.是否自定义了初始化方法如果自定义了，则执行invokeCustomInitMethod(beanName, bean, mbd)
+                            3.执行后置处理器的applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName)
+                                调用所有后置处理器的postProcessAfterInitialization(result, beanName)
+                        4.注册bean的销毁方法registerDisposableBeanIfNecessary
+                5.将创建的bean添加到缓存中
+            8）在使用getBean创建在完所有bean之后
+                检查所有bean是否实现了SmartInitializingSingleton接口，如果实现了则执行afterSingletonsInstantiated()方法
+12.finishRefresh()完成BeanFactory的初始化创建工作，IOC就创建完成
+    1）clearResourceCaches()清除容器资源缓存
+    2）initLifecycleProcessor()初始化与生命周期有关的后置处理器
+        从容器中找是否有默认的LifecycleProcessor组件，如果没有就new DefaultLifecycleProcessor()然后加入到容器中
+    3）getLifecycleProcessor().onRefresh()获取到生命周期处理器（beanFactory的生命周期处理器），并执行刷新方法
+    4）publishEvent(new ContextRefreshedEvent(this))发布容器刷新时间
+    5）LiveBeansView.registerApplicationContext(this)
+==========spring容器启动总结============
+1.spring容器在启动时，会先保存所有注册进来的Bean定义信息
+    1）用XML注册Bean
+    2）用注解的方式注册bean
+2.spring容器会在合适的时机创建bean
+    1）统一创建剩下所有bean的时候finishBeanFactoryInitialization(beanFactory)
+    2）用到这个bean的时候，利用getBean创建，然后保存在容器中
+3.容器的后置处理器
+    1）每一个bean的创建，都会使用各种后置处理器处理，来增强bean的功能
+        比如@Autowired注解的AutowiredAnnotationBeanPostProcessor
+        比如AOP注解的AnnotationAwareAspectJAutoProxyCreator
+4.事件驱动模型
+    1）ApplicationListener：事件监听
+    2）ApplicationEventMulticaster：事件派发器
+
+
 
 
 
