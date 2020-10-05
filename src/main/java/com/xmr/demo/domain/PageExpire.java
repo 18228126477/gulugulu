@@ -1,14 +1,13 @@
 package com.xmr.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
 
 public class PageExpire  implements Serializable {
 
+    private static final long serialVersionUID = 6320554345271361329L;
     private Integer pageId;
     @JsonFormat(timezone = "GMT+8")
     private Date expireDate;

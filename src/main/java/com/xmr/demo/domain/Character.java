@@ -9,6 +9,7 @@ import java.util.Date;
 @Setter
 @Getter
 public class Character implements Serializable {
+    private static final long serialVersionUID = -5765623054147153457L;
     private Integer id;
     private String name;
     private Integer sex;

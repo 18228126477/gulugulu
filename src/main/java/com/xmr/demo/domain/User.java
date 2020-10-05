@@ -1,12 +1,10 @@
 package com.xmr.demo.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
 
+    private static final long serialVersionUID = -3552443881505242578L;
     private Integer id;
     private String username;
     private String password;
